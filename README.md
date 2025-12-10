@@ -1,37 +1,6 @@
-# DriveEasy - Full-Featured Car Rental Website
+Full-Featured Car Rental Website
 
 A modern, fully responsive car rental website with dark/light mode, user authentication, admin dashboard, and complete booking system. Built with HTML, CSS, and JavaScript using LocalStorage for data persistence.
-
-## 🎨 Features
-
-### Design
-- **Modern Minimal UI**: Clean, stylish design with smooth animations
-- **Dark/Light Mode**: Toggle between themes with preference saved in localStorage
-- **Fully Responsive**: Works perfectly on mobile, tablet, and desktop
-- **Smooth Animations**: Hover effects, transitions, and micro-interactions
-- **Beautiful Images**: High-quality car images from Unsplash
-
-### User Features
-- **User Registration & Login**: Secure authentication system
-- **Browse Cars**: View all available cars with filters
-- **Search & Filter**: Filter by brand, price, transmission type
-- **Car Details**: Detailed view with specifications
-- **Booking System**: Book cars with date validation
-- **Booking History**: View and manage your bookings
-- **Profile Management**: Update profile and change password
-
-### Admin Features
-- **Admin Dashboard**: Complete admin panel
-- **Car Management**: Add, edit, and delete cars
-- **View All Bookings**: Monitor all user bookings
-- **Statistics**: View total cars, bookings, and users
-
-### Technical Features
-- **LocalStorage**: All data stored in browser localStorage
-- **Form Validation**: Comprehensive input validation
-- **Date Validation**: Prevent booking conflicts
-- **Session Management**: Secure session handling
-- **Modular Code**: Organized JavaScript modules
 
 ## 📁 Project Structure
 
