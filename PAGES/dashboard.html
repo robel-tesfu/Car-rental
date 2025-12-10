@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - DriveEasy</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">🚗</span>
+                    <span class="logo-text">DriveEasy</span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+                    <li><a href="profile.html" class="nav-link">Profile</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="btn btn-outline" onclick="handleLogout()">Logout</button>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Welcome, <span id="userName"></span></h1>
+                <p>Browse and book your perfect car</p>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <div class="filters-wrapper">
+                    <div class="filter-group">
+                        <label>Search</label>
+                        <input type="text" id="searchInput" class="form-input" placeholder="Search by name, brand..." onkeyup="filterCars()">
+                    </div>
+                    <div class="filter-group">
+                        <label>Brand</label>
+                        <select id="filterBrand" class="form-input" onchange="filterCars()">
+                            <option value="">All Brands</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Price Range</label>
+                        <select id="filterPrice" class="form-input" onchange="filterCars()">
+                            <option value="">All Prices</option>
+                            <option value="0-50">$0 - $50</option>
+                            <option value="50-100">$50 - $100</option>
+                            <option value="100-150">$100 - $150</option>
+                            <option value="150+">$150+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Transmission</label>
+                        <select id="filterTransmission" class="form-input" onchange="filterCars()">
+                            <option value="">All</option>
+                            <option value="automatic">Automatic</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-secondary" onclick="resetFilters()">Reset</button>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" onclick="switchTab('cars')">Available Cars</button>
+                <button class="tab-btn" onclick="switchTab('bookings')">My Bookings</button>
+            </div>
+
+            <!-- Cars Tab -->
+            <div id="carsTab" class="tab-content active">
+                <div class="cars-grid" id="carsGrid">
+                    <!-- Cars will be dynamically inserted here -->
+                </div>
+                <div id="noCars" class="no-results" style="display: none;">
+                    <p>No cars found matching your criteria.</p>
+                </div>
+            </div>
+
+            <!-- Bookings Tab -->
+            <div id="bookingsTab" class="tab-content">
+                <div class="bookings-list" id="bookingsList">
+                    <!-- Bookings will be dynamically inserted here -->
+                </div>
+                <div id="noBookings" class="no-results" style="display: none;">
+                    <p>You haven't made any bookings yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Car Details Modal -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCarModal()">&times;</span>
+            <div id="carModalContent">
+                <!-- Car details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+            <h2>Book Car</h2>
+            <form id="bookingForm" onsubmit="handleBooking(event)">
+                <input type="hidden" id="bookingCarId">
+                <div class="form-group">
+                    <label>Car</label>
+                    <input type="text" id="bookingCarName" class="form-input" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Pickup Date *</label>
+                    <input type="date" id="bookingPickupDate" class="form-input" required onchange="validateBookingDates()">
+                </div>
+                <div class="form-group">
+                    <label>Return Date *</label>
+                    <input type="date" id="bookingReturnDate" class="form-input" required onchange="validateBookingDates()">
+                </div>
+                <div class="form-group">
+                    <label>Total Price</label>
+                    <input type="text" id="bookingTotalPrice" class="form-input" readonly>
+                </div>
+                <div id="bookingError" class="error-message" style="display: none;"></div>
+                <button type="submit" class="btn btn-primary btn-block">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Alert Container -->
+    <div id="alertContainer" class="alert-container"></div>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/cars.js"></script>
+    <script src="../js/bookings.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

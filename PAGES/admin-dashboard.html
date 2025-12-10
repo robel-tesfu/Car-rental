@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - DriveEasy</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">🚗</span>
+                    <span class="logo-text">DriveEasy Admin</span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="admin-dashboard.html" class="nav-link active">Dashboard</a></li>
+                    <li><a href="#cars" class="nav-link">Cars</a></li>
+                    <li><a href="#bookings" class="nav-link">Bookings</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button class="btn btn-outline" onclick="handleAdminLogout()">Logout</button>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <p>Manage cars and bookings</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🚗</div>
+                    <div class="stat-info">
+                        <h3 id="totalCars">0</h3>
+                        <p>Total Cars</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-info">
+                        <h3 id="totalBookings">0</h3>
+                        <p>Total Bookings</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3 id="totalUsers">0</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" onclick="switchAdminTab('cars')">Manage Cars</button>
+                <button class="tab-btn" onclick="switchAdminTab('bookings')">All Bookings</button>
+            </div>
+
+            <!-- Cars Management Tab -->
+            <div id="carsAdminTab" class="tab-content active">
+                <div class="section-header">
+                    <h2>Car Management</h2>
+                    <button class="btn btn-primary" onclick="openAddCarModal()">+ Add New Car</button>
+                </div>
+                <div class="cars-grid" id="adminCarsGrid">
+                    <!-- Cars will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Bookings Tab -->
+            <div id="bookingsAdminTab" class="tab-content">
+                <div class="section-header">
+                    <h2>All Bookings</h2>
+                </div>
+                <div class="bookings-list" id="adminBookingsList">
+                    <!-- Bookings will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Car Modal -->
+    <div id="carFormModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="close-modal" onclick="closeCarFormModal()">&times;</span>
+            <h2 id="carFormTitle">Add New Car</h2>
+            <form id="carForm" onsubmit="handleCarSubmit(event)">
+                <input type="hidden" id="carFormId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Car Name *</label>
+                        <input type="text" id="carName" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Brand *</label>
+                        <input type="text" id="carBrand" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Type *</label>
+                        <select id="carType" class="form-input" required>
+                            <option value="economy">Economy</option>
+                            <option value="suv">SUV</option>
+                            <option value="luxury">Luxury</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price Per Day ($) *</label>
+                        <input type="number" id="carPrice" class="form-input" min="1" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Seats *</label>
+                        <input type="number" id="carSeats" class="form-input" min="2" max="8" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fuel Type *</label>
+                        <select id="carFuel" class="form-input" required>
+                            <option value="petrol">Petrol</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electric">Electric</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Transmission *</label>
+                        <select id="carTransmission" class="form-input" required>
+                            <option value="automatic">Automatic</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URL *</label>
+                        <input type="url" id="carImage" class="form-input" required placeholder="https://images.unsplash.com/...">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeCarFormModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Car</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Alert Container -->
+    <div id="alertContainer" class="alert-container"></div>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/cars.js"></script>
+    <script src="../js/bookings.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>

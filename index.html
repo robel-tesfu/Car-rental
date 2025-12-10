@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveEasy - Premium Car Rental</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">🚗</span>
+                    <span class="logo-text">DriveEasy</span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="#cars" class="nav-link">Cars</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <a href="pages/login.html" class="btn btn-outline">Login</a>
+                    <a href="pages/dashboard.html" class="btn btn-primary" id="dashboardLink" style="display: none;">Dashboard</a>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80" alt="Premium Car" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Rent Your Dream Car</h1>
+                <p class="hero-subtitle">Premium vehicles at unbeatable prices. Experience luxury on every journey.</p>
+                
+                <!-- Search Bar -->
+                <!--<div class="search-bar">
+                    <div class="search-form">
+                        <div class="form-group">
+                            <label for="pickup-location">Pick-up Location</label>
+                            <input type="text" id="pickup-location" class="form-input" placeholder="Enter location">
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-date">Pick-up Date</label>
+                            <input type="date" id="pickup-date" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="dropoff-date">Drop-off Date</label>
+                            <input type="date" id="dropoff-date" class="form-input">
+                        </div>
+                        <button class="btn btn-primary search-btn" onclick="handleSearch()">
+                            <span>Search Cars</span>
+                            <span class="btn-icon">🔍</span>
+                        </button>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section id="cars" class="featured-cars">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Cars</h2>
+                <p class="section-subtitle">Handpicked premium vehicles for your journey</p>
+            </div>
+            <div class="cars-grid" id="featuredCarsGrid">
+                <!-- Featured cars will be dynamically inserted here -->
+            </div>
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="pages/dashboard.html" class="btn btn-primary btn-large">View All Cars</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="about" class="why-choose-us">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose DriveEasy</h2>
+                <p class="section-subtitle">Experience the difference with our premium service</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔑</div>
+                    <h3>Easy Booking</h3>
+                    <p>Book your car in minutes with our simple online process</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Best Prices</h3>
+                    <p>Competitive rates with no hidden fees or surprises</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Fully Insured</h3>
+                    <p>All vehicles come with comprehensive insurance coverage</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Premium Fleet</h3>
+                    <p>Well-maintained, latest model vehicles in perfect condition</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer service whenever you need help</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Multiple Locations</h3>
+                    <p>Convenient pickup and drop-off points across the city</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Have questions? We're here to help!</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@driveeasy.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Main Street, City, State 12345</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🚗</span>
+                        <span class="logo-text">DriveEasy</span>
+                    </div>
+                    <p>Your trusted partner for premium car rentals. Quality service, affordable prices.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#cars">Cars</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Long Term Rental</a></li>
+                        <li><a href="#">Airport Transfer</a></li>
+                        <li><a href="#">Corporate Rental</a></li>
+                        <li><a href="#">Insurance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DriveEasy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Alert Container -->
+    <div id="alertContainer" class="alert-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cars.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initApp();
+            loadFeaturedCars();
+            checkAuthStatus();
+        });
+
+        function handleSearch() {
+            const pickupLocation = document.getElementById('pickup-location').value;
+            const pickupDate = document.getElementById('pickup-date').value;
+            const dropoffDate = document.getElementById('dropoff-date').value;
+
+            if (!pickupLocation || !pickupDate || !dropoffDate) {
+                showAlert('Please fill in all search fields', 'error');
+                return;
+            }
+
+            // Store search criteria
+            localStorage.setItem('searchCriteria', JSON.stringify({
+                location: pickupLocation,
+                pickupDate,
+                dropoffDate
+            }));
+
+            // Redirect to dashboard
+            window.location.href = 'pages/dashboard.html';
+        }
+    </script>
+</body>
+</html>
